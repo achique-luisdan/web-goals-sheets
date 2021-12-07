@@ -18,7 +18,7 @@ import {PeriodicElement} from './models/goals-models';
 export class AppComponent implements AfterViewInit {
   title = 'web-goals-sheets';
 
-  ELEMENT_DATA: PeriodicElement[] = [
+  public ELEMENT_DATA: PeriodicElement[] = [
     {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
     {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
     {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
@@ -41,8 +41,9 @@ export class AppComponent implements AfterViewInit {
     {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
   ];
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
+  public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  // eslint-disable-next-line max-len
+  public dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
