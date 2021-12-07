@@ -15,4 +15,9 @@ import {AppComponent} from './app.component';
   providers: [],
   bootstrap: [AppComponent],
 })
+/**
+ * Descripción: Módulo App.
+ * Autor: achique-luisdan
+ * Fecha: 07-12-2021
+ */
 export class AppModule { }
