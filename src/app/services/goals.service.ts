@@ -7,7 +7,7 @@ import { ResponseListGoals } from '../models/goals-responses';
   providedIn: 'root',
 })
 /**
-* Descripción: Servicio para consultar las metas.
+* Descripción: Servicio para consultar los objetivos.
 * Autor: achique-luisdan
 * Fecha: 07-12-2021
 */
@@ -15,14 +15,13 @@ export class GoalsService {
   url: string = 'http://localhost:3000/api/goals/';
 
   /**
-   * Descripción: Clase Goal.
-   * Autor: achique-luisdan
-   * Fecha: 07-12-2021
+   * Descripción: Constructor del servicio.
   */
   constructor(private http: HttpClient) { }
 
   /**
-   * @return {ResponseListGoals} Response de lista de objetivos.
+   * Descripción: Lista los objetivos.
+   * @return {ResponseListGoals} Respuesta de lista de objetivos.
    */
   listGoal(): Observable<ResponseListGoals> {
     return this.http

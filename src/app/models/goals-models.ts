@@ -1,5 +1,5 @@
 /**
- * Descripción: Clase Action.
+ * Descripción: Modelo Acción
  * Autor: achique-luisdan
  * Fecha: 07-12-2021
  */
@@ -11,9 +11,7 @@ export class Action {
 }
 
 /**
- * Descripción: Clase Goal.
- * Autor: achique-luisdan
- * Fecha: 07-12-2021
+ * Descripción: Modelo Objetivo
  */
 export class Goal {
   id: number;
@@ -21,5 +19,5 @@ export class Goal {
   descripcion: string;
   startDate: string;
   endDate: string;
-  actions: Action [];
+  actions: Action[];
 }
