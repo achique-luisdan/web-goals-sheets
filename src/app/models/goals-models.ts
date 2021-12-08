@@ -1,11 +1,23 @@
 /**
- * Descripción: Módulo App.
+ * Descripción: Modelo Acción
  * Autor: achique-luisdan
  * Fecha: 07-12-2021
  */
-export class PeriodicElement {
-  name: string = '';
-  position: number = 0;
-  weight: number = 0;
-  symbol: string = '';
+export class Action {
+  id: number;
+  descripcion: string;
+  done: boolean;
+  goal: Goal;
+}
+
+/**
+ * Descripción: Modelo Objetivo
+ */
+export class Goal {
+  id: number;
+  name: string;
+  descripcion: string;
+  startDate: string;
+  endDate: string;
+  actions: Action[];
 }
