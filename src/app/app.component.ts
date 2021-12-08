@@ -1,9 +1,11 @@
 /* eslint-disable @angular-eslint/use-lifecycle-interface */
 
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {PeriodicElement} from './models/goals-models';
+import {Goal} from './models/goals-models';
+import { ResponseListGoals } from './models/goals-responses';
+import { GoalsService } from './services/goals.service';
 
 @Component({
   selector: 'app-root',
@@ -15,39 +17,39 @@ import {PeriodicElement} from './models/goals-models';
  * Autor: achique-luisdan
  * Fecha: 07-12-2021
  */
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   title = 'web-goals-sheets';
+  responseListGoals: ResponseListGoals = new ResponseListGoals();
 
-  public ELEMENT_DATA: PeriodicElement[] = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-    {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-    {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-    {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-    {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-    {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-    {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-    {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-    {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-    {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-    {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
+  public displayedColumns: string[] = [
+    'id',
+    'name',
+    'description',
+    'startDate',
+    'endDate',
   ];
 
-  public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  // eslint-disable-next-line max-len
-  public dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
+  public dataSource = new MatTableDataSource
+  <Goal>(this.responseListGoals.goals);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
+  /**
+   * Descripción: Constructor
+   * Autor: achique-luisdan
+   * Fecha: 07-12-2021
+   */
+  constructor(private goalsService:GoalsService) {}
+
+  /**
+   * Descripción: Componente App
+   * Autor: achique-luisdan
+   * Fecha: 07-12-2021
+   */
+  ngOnInit(): void {
+    this.listGoals();
+  }
+
   /**
    * Descripción: Componente App
    * Autor: achique-luisdan
@@ -55,6 +57,19 @@ export class AppComponent implements AfterViewInit {
    */
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  /**
+   * Descripción: listGoals
+   * Autor: achique-luisdan
+   * Fecha: 07-12-2021
+   */
+  listGoals(): void {
+    this.goalsService.listGoal().subscribe((response) => {
+      this.responseListGoals = response;
+      this.dataSource.data = this.responseListGoals.goals;
+      console.log(this.responseListGoals);
+    });
   }
 }
 
