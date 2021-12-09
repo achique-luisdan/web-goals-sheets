@@ -21,3 +21,15 @@ export class Goal {
   endDate: string;
   actions: Action[];
 }
+
+/**
+ * Descripción: Clase contiene la información del progreso de un objetivo
+ * Autor: achique-luisdan
+ * Fecha: 07-12-2021
+ */
+export class Progress {
+  done: number;
+  todo: number;
+  quantity: number;
+  percent: number;
+}

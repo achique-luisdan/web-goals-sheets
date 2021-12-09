@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ResponseListGoals } from '../models/goals-responses';
+import { ListGoals } from '../models/goals-responses';
 
 @Injectable({
   providedIn: 'root',
@@ -21,16 +21,16 @@ export class GoalsService {
 
   /**
    * Descripción: Lista los objetivos.
-   * @return {ResponseListGoals} Respuesta de lista de objetivos.
+   * @return {ListGoals} Respuesta de lista de objetivos.
    */
-  listGoal(): Observable<ResponseListGoals> {
+  listGoal(): Observable<ListGoals> {
     return this.http
         .get(
             this.url,
         )
         .pipe(
             map((response) => {
-              return response as ResponseListGoals;
+              return response as ListGoals;
             }),
         );
   }
