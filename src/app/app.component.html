@@ -6,27 +6,27 @@
 
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef>ID</th>
-          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.goal.id }}</td>
         </ng-container>
 
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Nombre</th>
-          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.goal.name }}</td>
         </ng-container>
 
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef>Descripción</th>
-          <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.goal.description }}</td>
         </ng-container>
 
         <ng-container matColumnDef="startDate">
           <th mat-header-cell *matHeaderCellDef>Fecha de Inicio</th>
-          <td mat-cell *matCellDef="let element">{{ element.startDate }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.goal.startDate }}</td>
         </ng-container>
 
         <ng-container matColumnDef="endDate">
           <th mat-header-cell *matHeaderCellDef>Fecha de Fin</th>
-          <td mat-cell *matCellDef="let element">{{ element.endDate }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.goal.endDate }}</td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

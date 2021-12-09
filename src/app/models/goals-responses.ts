@@ -1,19 +1,30 @@
-import { Goal } from './goals-models';
+import { Goal, Progress } from './goals-models';
 
 /**
  * Descripción: Modelo Respuesta base, se hereda por otros response.
  * Autor: achique-luisdan
  * Fecha: 07-12-2021
  */
-export class ResponseBase {
+export class Base {
+  results: number;
   msg: string;
   code: number;
 }
 
 /**
- * Descripción: Modelo Respuesta de lista de objetivos
+ * Descripción: Respuesta de consultar objetivos por ID.
+ * Autor: achique-luisdan
+ * Fecha: 07-12-2021
  */
-export class ResponseListGoals extends ResponseBase {
-  goals: Goal[] = [];
-  lenght: number;
+export class ReadGoal {
+  goal: Goal;
+  progress: Progress;
+}
+/**
+ * Descripción: Respuesta de lista de objetivos.
+ * Autor: achique-luisdan
+ * Fecha: 07-12-2021
+ */
+export class ListGoals extends Base {
+  goals: ReadGoal[];
 }

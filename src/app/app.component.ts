@@ -3,8 +3,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Goal } from './models/goals-models';
-import { ResponseListGoals } from './models/goals-responses';
+import { ListGoals, ReadGoal } from './models/goals-responses';
 import { GoalsService } from './services/goals.service';
 
 @Component({
@@ -18,7 +17,7 @@ import { GoalsService } from './services/goals.service';
  * Fecha: 07-12-2021
  */
 export class AppComponent implements AfterViewInit, OnInit {
-  responseListGoals: ResponseListGoals = new ResponseListGoals();
+  listGoals: ListGoals = new ListGoals();
 
   public displayedColumns: string[] = [
     'id',
@@ -29,7 +28,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   ];
 
   public dataSource = new MatTableDataSource
-    <Goal>(this.responseListGoals.goals);
+    <ReadGoal>(this.listGoals.goals);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -49,16 +48,18 @@ export class AppComponent implements AfterViewInit, OnInit {
    * Descripción: Al inicializar el componente.
    */
   ngOnInit(): void {
-    this.listGoals();
+    this.callListGoals();
   }
 
   /**
    * Descripción: Función para Listar objetivos.
    */
-  listGoals(): void {
+  callListGoals(): void {
     this.goalsService.listGoal().subscribe((response) => {
-      this.responseListGoals = response;
-      this.dataSource.data = this.responseListGoals.goals;
+      this.listGoals = response;
+      this.dataSource.data = this.listGoals.goals;
+      this.dataSource.paginator = this.paginator;
+      console.log(this.listGoals);
     });
   }
 }
